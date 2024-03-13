@@ -19,8 +19,6 @@ export const StepInfo: React.FC<StepInfoProps> = ({
   control,
   watch,
 }) => {
-  console.log(errors)
-
   return (
     <>
       <Controller

@@ -70,8 +70,7 @@ export const Profile = () => {
         location: data.location,
         genderPreference: data.genderPreference,
       })
-      .then((res) => {
-        console.log(res)
+      .then(() => {
         setIsEdit(false)
         getUsers()
       })
@@ -229,7 +228,6 @@ export const Profile = () => {
                             ...userProfile.images,
                             {url: `${fileContent}`},
                           ])
-                      console.log(watch("images"))
                       handleCustomSubmit()
                     }
                     const files = Array.from(e.target.files as FileList)

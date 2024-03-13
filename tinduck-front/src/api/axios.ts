@@ -22,7 +22,6 @@ authAxios.interceptors.response.use(
         delete authAxios.defaults.headers.common["Authorization"]
       }
     }
-    console.log("ОКНФИГ АФЫАЫФА")
     return error.response
   },
 )

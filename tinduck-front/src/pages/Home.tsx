@@ -29,12 +29,10 @@ export const Home: React.FC = () => {
   }, [])
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const getOffer = async () => {
-    console.log(genderPreference)
     setIsLoading(true)
     await $axios
       .post("/offer/", {genderPreference})
       .then((res) => {
-        console.log(res)
         setOfferUser(res?.data)
         tinderCardRef.current?.restoreCard()
         setIsLoading(false)
@@ -59,7 +57,6 @@ export const Home: React.FC = () => {
   }
   const tinderCardRef = useRef<TinderCardElement>(null)
   const swiped = async (dir: string) => {
-    console.log(dir)
     if (dir === "left") {
       DisLikeOffer()
     }

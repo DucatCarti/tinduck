@@ -21,7 +21,6 @@ export const Chat: React.FC = () => {
   useEffect(() => {
     dispatch(getProfile())
     socket.on("getMessages", (data) => {
-      console.log(data)
       setMessages(data)
       setIsLoading(false)
     })

@@ -20,11 +20,9 @@ export const Login: React.FC = () => {
     await authAxios
       .post("login", {data})
       .then((res) => {
-        console.log(res)
         if (res.status === 200) {
           localStorage.setItem("token", res.data.token)
           localStorage.setItem("user", JSON.stringify(res.data.user))
-          console.log(res.data)
           clearErrors("password")
           if (res.data.user) {
             navigate("/")

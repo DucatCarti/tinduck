@@ -34,13 +34,11 @@ export const authSlice = createSlice({
     builder
       .addCase(getProfile.pending, (state) => {
         state.loadingProfile = true
-        console.log("получем пользователя...")
       })
       .addCase(getProfile.fulfilled, (state, action) => {
         state.profile = action.payload
         state.loadingProfile = false
         state.errorProfile = null
-        console.log("получили пользователя!")
       })
       .addCase(getProfile.rejected, (state, action) => {
         state.errorProfile =

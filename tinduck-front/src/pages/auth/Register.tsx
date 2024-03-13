@@ -25,23 +25,18 @@ export const Register = () => {
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const submit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data)
-    console.log("huy")
     if (stepRegister < stepMax) {
       setStepRegister((prev) => ++prev)
     }
     if (stepRegister === stepMax && !Object.keys(errors).length) {
       setIsLoading(true)
 
-      console.log(data)
-      console.log("SUBMIT FINAL")
       await authAxios
         .post("register", {data})
         .then((res) => {
           if (res.data.successRegister) {
             authAxios.defaults.headers.common["Authorization"] =
               "Bearer " + res.data.token
-            console.log(res.data.user)
             localStorage.setItem("token", res.data.token)
             localStorage.setItem("user", JSON.stringify(res.data.user))
             navigate("/")

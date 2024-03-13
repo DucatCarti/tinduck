@@ -62,7 +62,6 @@ export const StepImages: React.FC<StepImagesProps> = ({
                     prev
                       ? field.onChange([...prev, {url: `${fileContent}`}])
                       : field.onChange([{url: `${fileContent}`}])
-                    console.log(watch("images"))
                   }
                   const files = Array.from(e.target.files as FileList)
                   files.forEach((file) => reader.readAsDataURL(file))
