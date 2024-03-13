@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap')
+* {
+  box-sizing: border-box;
+  font-family: "Comfortaa", sans-serif;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #242424;
+  background-color: white;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+}
+
+a {
+  font-weight: 500;
+  /*color: #646cff;*/
+  text-decoration: inherit;
+  transition: all ease 0.25s;
+}
+a:hover {
+  color: #535bf2;
+}
+a.active {
+  border-top: 5px solid #535bf2;
+  > * {
+    color: #535bf2;
+  }
+}
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  width: 100%;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+.container-app {
+  max-width: 768px;
+}
+.container-page {
+  margin-top: 85px;
+  margin-bottom: 80px;
+  padding: 0 5px;
+}
+
+
+.swiper {
+  width: 216px;
+  height: 288px;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.loading {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, transparent 0%, rgba(140, 160, 255, 0.4) 50%, transparent 100%);
+  box-shadow: 1px 1px 10px 3px rgba(140, 160, 255, 0.4);
+  padding: 10px;
+  background-size: 200% 100%;
+  animation: loading 2s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+img {
+  user-select: none;
+  -moz-user-select: none; /* Для поддержки в Firefox */
+  -webkit-user-drag: none; /* Для поддержки в WebKit (Chrome, Safari, etc.) */
+  -webkit-user-select: none; /* Для поддержки в WebKit (Chrome, Safari, etc.) */
+}
+
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner-icon {
+  animation: spin 1s linear infinite; /* Анимация spin будет вращать иконку бесконечно */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+textarea {
+  resize: none;
+}
+input, textarea {
+  appearance: none; /* Сброс стилей элемента ввода */
+  background-color: transparent; /* Прозрачный фон */
+  border: none; /* Убираем границы */
+  outline: none; /* Убираем обводку */
+  padding: 0; /* Убираем отступы */
+  margin: 0; /* Убираем отступы */
+  font-family: inherit; /* Наследуем шрифт */
+  font-size: inherit; /* Наследуем размер шрифта */
+  line-height: inherit; /* Наследуем высоту строки */
+  color: inherit; /* Наследуем цвет текста */
+}
+
+
+.shadow-custom {
+  box-shadow: 1px 2px 6px -1px rgba(0, 0, 0, 0.4) !important;
+}

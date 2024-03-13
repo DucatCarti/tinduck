@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int       @id @default(autoincrement())
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+  name             String
+  age              Int
+  gender           String
+  genderPreference String
+  location         String
+  about            String?
+  email            String    @unique
+  password         String
+  likedBy          Like[]    @relation("LikedByUser")
+  liked            Like[]    @relation("LikedUser")
+  sentMessages     Message[] @relation("SentMessages")
+  receivedMessages Message[] @relation("ReceivedMessages")
+  Image            Image[]
+}
+
+model Image {
+  id     Int    @id @default(autoincrement())
+  url    String
+  user   User?  @relation(fields: [userId], references: [id])
+  userId Int?
+}
+
+model Like {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now()) @map("created_at")
+  sender     User     @relation("LikedByUser", fields: [senderId], references: [id])
+  receiver   User     @relation("LikedUser", fields: [receiverId], references: [id])
+  senderId   Int
+  receiverId Int
+
+  @@unique([senderId, receiverId])
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now()) @map("created_at")
+  text       String
+  sender     User     @relation("SentMessages", fields: [senderId], references: [id])
+  receiver   User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  senderId   Int
+  receiverId Int
+}
