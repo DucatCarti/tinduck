@@ -1,6 +1,7 @@
 import axios from "axios"
 
-export const BASE_URL = "http://192.168.0.104:3000"
+const BASE_PORT = 3001
+export const BASE_URL = `http://192.168.0.104:${BASE_PORT}`
 
 export const authAxios = axios.create({
   baseURL: `${BASE_URL}/api/auth/`,
