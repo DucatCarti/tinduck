@@ -29,7 +29,12 @@ export const getProfile = createAsyncThunk("auth/getProfile", async () => {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    updateProfile: () => {
+      localStorage.removeItem("user")
+      getProfile()
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProfile.pending, (state) => {
@@ -47,5 +52,5 @@ export const authSlice = createSlice({
   },
 })
 
-export const {} = authSlice.actions
+export const {updateProfile} = authSlice.actions
 export default authSlice.reducer
