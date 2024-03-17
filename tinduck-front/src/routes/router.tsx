@@ -1,7 +1,6 @@
-import React from "react"
 import {createBrowserRouter, RouteObject} from "react-router-dom"
 import {Home} from "../pages/Home.tsx"
-import {Profile} from "../pages/Profile.tsx"
+import {Profile} from "../pages/profile/Profile.tsx"
 import {Layout} from "../components/layout/Layout.tsx"
 import {ChatList} from "../pages/messages/ChatList.tsx"
 import {Like} from "../pages/Like.tsx"

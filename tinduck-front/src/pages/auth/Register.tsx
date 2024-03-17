@@ -23,6 +23,7 @@ export const Register: React.FC = () => {
     mode: "onBlur",
     reValidateMode: "onBlur",
   })
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const submit: SubmitHandler<FieldValues> = async (data) => {
     if (stepRegister < stepMax) {
@@ -51,7 +52,6 @@ export const Register: React.FC = () => {
 
   const [stepRegister, setStepRegister] = useState(1)
   const stepRegisterBack = () => setStepRegister((prev) => --prev)
-
   const stepMax = 8
   const progress = (stepRegister / stepMax) * 100
 
