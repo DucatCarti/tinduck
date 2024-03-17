@@ -9,15 +9,12 @@ import {ChatMessagesList} from "./components/ChatMessagesList.tsx"
 import {BASE_URL} from "../../../api/axios.ts"
 
 export const Chat: React.FC = () => {
-  const [message, setMessage] = useState<string>("")
-  const [messages, setMessages] = useState([])
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const socket = useMemo(() => io(`${BASE_URL}`), [])
-
   const location = useLocation()
   const receiverProfile = location.state?.profile
   const senderProfile = useAppSelector((state) => state.auth?.profile)
+
   const dispatch = useAppDispatch()
+  const [messages, setMessages] = useState([])
   useEffect(() => {
     dispatch(getProfile())
     socket.on("getMessages", (data) => {
@@ -32,6 +29,8 @@ export const Chat: React.FC = () => {
     getMessages()
   }, [senderProfile?.id])
 
+  const socket = useMemo(() => io(`${BASE_URL}`), [])
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const getMessages = () => {
     if (senderProfile?.id && receiverProfile?.id) {
       socket.emit("getMessages", {
@@ -41,6 +40,7 @@ export const Chat: React.FC = () => {
       setIsLoading(true)
     }
   }
+  const [message, setMessage] = useState<string>("")
   const sendMessage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (message) {

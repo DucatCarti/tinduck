@@ -7,9 +7,11 @@ import {$axios} from "../api/axios.ts"
 
 export const DuckDetail: React.FC = () => {
   const location = useLocation()
+  const navigate = useNavigate()
+
   const profile = location.state?.profile
   const isOffer = location.state?.isOffer
-  const navigate = useNavigate()
+
   const likeOffer = async () => {
     await $axios
       .post(`offer/like/${profile?.id}`)
@@ -21,9 +23,11 @@ export const DuckDetail: React.FC = () => {
       })
     navigate("/")
   }
+
   const DisLikeOffer = () => {
     navigate("/")
   }
+
   return (
     <>
       {profile ? (

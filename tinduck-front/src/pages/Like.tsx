@@ -5,11 +5,12 @@ import {DuckCardMini} from "../components/DuckCardMini.tsx"
 import {Spinner} from "../components/ui/Spinner.tsx"
 
 export const Like: React.FC = () => {
-  const [likedBy, setLikedBy] = useState<UserProfile[] | []>([])
-  const [isLoading, setIsLoading] = useState<boolean>(false)
   useEffect(() => {
     getLikedBy()
   }, [])
+
+  const [likedBy, setLikedBy] = useState<UserProfile[] | []>([])
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const getLikedBy = async () => {
     setIsLoading(true)
     await $axios

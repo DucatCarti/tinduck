@@ -10,19 +10,19 @@ import {BASE_URL} from "../../api/axios.ts"
 export const ChatList: React.FC = () => {
   const socket = useMemo(() => io(`${BASE_URL}`), [])
   const profile = useAppSelector((state) => state.auth.profile)
-  const [chats, setChats] = useState([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const dispatch = useAppDispatch()
   const getAllChats = () => {
     setIsLoading(true)
     if (profile?.id) {
       socket.emit("getAllChats", {senderId: profile?.id})
     }
   }
+
+  const dispatch = useAppDispatch()
+  const [chats, setChats] = useState([])
   useEffect(() => {
     dispatch(getProfile())
-
     socket.on("responseAllChats", (data) => {
       setIsLoading(false)
       setChats(data)
@@ -38,6 +38,7 @@ export const ChatList: React.FC = () => {
       }
     })
   }, [profile?.id])
+
   return (
     <div className="flex flex-col min-w-full min-h-full h-full w-full">
       {chats?.length ? (
