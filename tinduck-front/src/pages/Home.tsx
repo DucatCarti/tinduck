@@ -16,17 +16,21 @@ interface TinderCardElement {
 }
 
 export const Home: React.FC = () => {
-  const [offerUser, setOfferUser] = useState<UserProfile | undefined>()
-  const [genderPreference, setGenderPreference] = useState<Gender | undefined>()
   const dispatch = useAppDispatch()
-  useEffect(() => {
-    dispatch(getProfile())
-  }, [])
   const profile = useAppSelector((state) => state.auth.profile)
   useEffect(() => {
-    setGenderPreference(profile?.genderPreference)
+    if (!profile) {
+      dispatch(getProfile())
+    }
     getOffer()
   }, [])
+
+  const [genderPreference, setGenderPreference] = useState<Gender | undefined>()
+  useEffect(() => {
+    setGenderPreference(profile?.genderPreference)
+  }, [profile?.genderPreference])
+
+  const [offerUser, setOfferUser] = useState<UserProfile | undefined>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const getOffer = async () => {
     setIsLoading(true)
@@ -55,6 +59,7 @@ export const Home: React.FC = () => {
   const DisLikeOffer = () => {
     getOffer()
   }
+
   const tinderCardRef = useRef<TinderCardElement>(null)
   const swiped = async (dir: string) => {
     if (dir === "left") {
