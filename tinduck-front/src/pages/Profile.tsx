@@ -86,9 +86,9 @@ export const Profile = () => {
       <form
         ref={formRef}
         onSubmit={handleSubmit(editProfile)}
-        className={"flex flex-col items-center"}
+        className="flex flex-col items-center"
       >
-        <div className={"mt-[30px] flex flex-col items-center justify-center "}>
+        <div className="mt-[30px] flex flex-col items-center justify-center">
           {!isEdit && (
             <>
               <div
@@ -96,7 +96,7 @@ export const Profile = () => {
               >
                 {userProfile.images[0] && (
                   <img
-                    className={`w-full h-full object-cover`}
+                    className="w-full h-full object-cover"
                     src={userProfile?.images?.[0]?.url}
                     alt=""
                   />
@@ -105,7 +105,7 @@ export const Profile = () => {
             </>
           )}
 
-          <div className={"my-[20px]"}>
+          <div className="my-[20px]">
             {!isEdit && (
               <p
                 className={`text-xl font-semibold text-center ${!(userProfile.name && userProfile.age) && "loading"}`}
@@ -116,7 +116,7 @@ export const Profile = () => {
             )}
             {isEdit ? (
               <>
-                <p className={"mb-[10px] text-xl text-center font-bold"}>
+                <p className="mb-[10px] text-xl text-center font-bold">
                   Выбирите пруд
                 </p>
                 <Controller
@@ -150,10 +150,8 @@ export const Profile = () => {
           <div
             className={`mx-[30px] mb-[30px] ${!userProfile.about && "loading min-h-[200px]"}`}
           >
-            <h3 className={`font-bold text-xl my-[10px] text-center`}>
-              О себе
-            </h3>
-            <p className={"mx-[30px]"}>{userProfile.about}</p>
+            <h3 className="font-bold text-xl my-[10px] text-center">О себе</h3>
+            <p className="mx-[30px]">{userProfile.about}</p>
           </div>
         )}
         {isEdit && (
@@ -161,7 +159,7 @@ export const Profile = () => {
             <div
               className={`mx-[30px] mb-[30px] ${!userProfile.about && "loading min-h-[200px]"}`}
             >
-              <h3 className={`font-bold text-xl my-[10px] text-center`}>
+              <h3 className="font-bold text-xl my-[10px] text-center">
                 О себе
               </h3>
               <Controller
@@ -179,8 +177,8 @@ export const Profile = () => {
                 )}
               />
             </div>
-            <div className={"mb-[50px] flex flex-col items-center"}>
-              <p className={"mb-[20px] font-bold text-xl"}>Кого вы ищите?</p>
+            <div className="mb-[50px] flex flex-col items-center">
+              <p className="mb-[20px] font-bold text-xl">Кого вы ищите?</p>
               <SelectorGenderPreference
                 control={control}
                 watch={watch}
@@ -190,15 +188,13 @@ export const Profile = () => {
           </>
         )}
         {!isEdit ? (
-          <div className={"flex flex-row gap-[30px] item-align justify-center"}>
+          <div className="flex flex-row gap-[30px] item-align justify-center">
             <div
               onClick={(e) => {
                 e.preventDefault()
                 fileInputRef.current?.click()
               }}
-              className={
-                "p-[20px] transition-all ease-in hover:scale-125 cursor-pointer shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)] border-black rounded-full"
-              }
+              className="p-[20px] transition-all ease-in hover:scale-125 cursor-pointer shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)] border-black rounded-full"
             >
               <MdOutlineAddAPhoto color={"#535bf2"} size={"40px"} />
             </div>
@@ -238,9 +234,7 @@ export const Profile = () => {
             />
             <div
               onClick={() => setIsEdit(true)}
-              className={
-                "p-[20px] transition-all ease-in hover:scale-125 cursor-pointer shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)] border-black rounded-full"
-              }
+              className="p-[20px] transition-all ease-in hover:scale-125 cursor-pointer shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)] border-black rounded-full"
             >
               <MdOutlineModeEdit color={"#535bf2"} size={"40px"} />
             </div>
@@ -253,12 +247,8 @@ export const Profile = () => {
           <div
             className={`mx-[30px] ${!userProfile.images.length && "loading"}`}
           >
-            <h3 className={"font-bold text-xl my-[15px] text-center"}>
-              Gallery
-            </h3>
-            <div
-              className={"flex flex-wrap gap-[8px] items-center justify-center"}
-            >
+            <h3 className="font-bold text-xl my-[15px] text-center">Gallery</h3>
+            <div className="flex flex-wrap gap-[8px] items-center justify-center">
               {userProfile?.images?.map((image) => (
                 <div key={image.id}>
                   <GalleryCard

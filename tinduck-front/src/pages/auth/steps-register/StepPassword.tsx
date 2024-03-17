@@ -74,20 +74,20 @@ export const StepPassword: React.FC<StepPasswordProps> = ({
             )}
           />
           {errors?.password?.message && (
-            <p className={"text-rose-700 text-xs"}>
+            <p className="text-rose-700 text-xs">
               {errors?.password.message as string}
             </p>
           )}
         </>
       )}
 
-      <div className={"flex flex-col"}>
-        <Button disabled={isLoading} className={"w-full"}>
+      <div className="flex flex-col">
+        <Button disabled={isLoading} className="w-full">
           Продолжить
         </Button>
         <button
           onClick={() => stepRegisterBack()}
-          className={"text-[#535bf2] font-bold mt-[12px] text-sm"}
+          className="text-[#535bf2] font-bold mt-[12px] text-sm"
         >
           Назад
         </button>

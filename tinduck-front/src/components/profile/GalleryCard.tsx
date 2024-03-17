@@ -22,22 +22,20 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({
 
   return (
     <div
-      className={"relative w-[150px] h-[150px] overflow-hidden"}
+      className="relative w-[150px] h-[150px] overflow-hidden"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <img
         key={image.id}
-        className={"w-full h-full object-cover"}
+        className="w-full h-full object-cover"
         src={image.url}
         alt=""
       />
       {isHovered && (
         <button
           onClick={() => image.id && deleteImage(image.id)}
-          className={
-            "absolute p-[3px] bg-slate-200 rounded-full top-[10px] right-[10px]"
-          }
+          className="absolute p-[3px] bg-slate-200 rounded-full top-[10px] right-[10px]"
         >
           <IoClose color={"black"}></IoClose>
         </button>

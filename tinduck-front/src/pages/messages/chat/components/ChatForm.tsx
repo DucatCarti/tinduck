@@ -23,10 +23,10 @@ export const ChatForm: React.FC<InputChatProps> = ({
     onChange(e)
   }
   return (
-    <div className={"w-full px-[15px] py-[5px] relative"}>
-      <div className={"flex flex-row gap-[10px]"}>
+    <div className="w-full px-[15px] py-[5px] relative">
+      <div className="flex flex-row gap-[10px]">
         <Input
-          className={`h-[46px] pr-[50px]`}
+          className="h-[46px] pr-[50px]"
           type={"textarea"}
           value={message}
           onChange={(e) => onChangeInput(e)}
@@ -34,9 +34,7 @@ export const ChatForm: React.FC<InputChatProps> = ({
         ></Input>
         <button
           onClick={(e) => sendMessage(e)}
-          className={
-            "absolute bottom-[5px] right-[20px] p-[10px] flex items-center justify-center"
-          }
+          className="absolute bottom-[5px] right-[20px] p-[10px] flex items-center justify-center"
         >
           <IoMdSend size={"26px"} />
         </button>

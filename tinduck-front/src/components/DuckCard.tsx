@@ -9,17 +9,13 @@ interface DuckCardProps {
 
 export const DuckCard: React.FC<DuckCardProps> = ({profile, isLoading}) => {
   return (
-    <div className={"w-[235px] mx-auto"}>
+    <div className="w-[235px] mx-auto">
       <Link
         draggable={false}
         to={`/duck/${profile?.id}`}
         state={{profile, isOffer: true}}
       >
-        <div
-          className={
-            "transition-all ease-in hover:scale-[1.015] relative w-[225px] h-[330px] truncate rounded-[20px] shadow-[2px_3px_5px_0px_rgba(0,0,0,0.3)]"
-          }
-        >
+        <div className="transition-all ease-in hover:scale-[1.015] relative w-[225px] h-[330px] truncate rounded-[20px] shadow-[2px_3px_5px_0px_rgba(0,0,0,0.3)]">
           {profile?.images.length && !isLoading && (
             <img
               className={`w-auto h-full object-cover ${(!profile?.images || isLoading) && "loading"}`}

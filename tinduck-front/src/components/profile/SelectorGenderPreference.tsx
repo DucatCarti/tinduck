@@ -10,7 +10,7 @@ import {UserProfile} from "../../types/UserData.ts"
 interface SelectorGenderPreferenceProps {
   control: Control
   watch: WatchInternal<UserProfile>
-  defaultValue: string
+  defaultValue?: string
 }
 
 export const SelectorGenderPreference: React.FC<
@@ -18,7 +18,7 @@ export const SelectorGenderPreference: React.FC<
 > = ({control, watch, defaultValue}) => {
   return (
     <>
-      <div className={"flex flex-row items-center justify-around gap-[30px]"}>
+      <div className="flex flex-row items-center justify-around gap-[30px]">
         <Controller
           control={control}
           name={"genderPreference"}

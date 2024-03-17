@@ -54,23 +54,15 @@ export const Chat: React.FC = () => {
   }
 
   return (
-    <div className={"h-auto w-full"}>
-      <div
-        className={
-          "flex flex-col items-center justify-between w-full min-w-full h-full min-h-full"
-        }
-      >
+    <div className="h-auto w-full">
+      <div className="flex flex-col items-center justify-between w-full min-w-full h-full min-h-full">
         <ChatHeader receiverProfile={receiverProfile}></ChatHeader>
         <ChatMessagesList
           messages={messages}
           senderProfile={senderProfile}
           isLoading={isLoading}
         ></ChatMessagesList>
-        <div
-          className={
-            "z-10 fixed bottom-[70px] pb-[5px] w-full bg-white container-app"
-          }
-        >
+        <div className="z-10 fixed bottom-[70px] pb-[5px] w-full bg-white container-app">
           <ChatForm
             sendMessage={(e) => sendMessage(e)}
             message={message}

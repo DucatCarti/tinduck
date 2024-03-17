@@ -32,8 +32,8 @@ export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
     [],
   )
   return (
-    <div className={"my-[65px] w-full p-[30px] relative"}>
-      <div className={"flex flex-col gap-[15px]"}>
+    <div className="my-[65px] w-full p-[30px] relative">
+      <div className="flex flex-col gap-[15px]">
         {messages?.length ? (
           messages?.map((message: Message) => (
             <div
@@ -41,20 +41,15 @@ export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
               className={`break-all relative pb-[25px] py-[5px] px-[15px] rounded-[18px] min-w-[110px] max-w-[300px] ${message.senderId === senderProfile?.id ? "self-end bg-[#535bf2] text-white" : "self-start bg-white"} shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)]`}
             >
               <p> {message.text}</p>
-              <p
-                className={
-                  "text-xs absolute text-slate-400 bottom-[5px] right-[15px]"
-                }
-              >
-                {" "}
-                {formatDate(message?.createdAt)}{" "}
+              <p className="text-xs absolute text-slate-400 bottom-[5px] right-[15px]">
+                {formatDate(message?.createdAt)}
               </p>
             </div>
           ))
         ) : isLoading ? (
           <Spinner></Spinner>
         ) : (
-          <div className={"text-slate-400 text-center absolute bottom-[10px]"}>
+          <div className="text-slate-400 text-center absolute bottom-[10px]">
             Вы пока не общались. Начните диалог первым!
           </div>
         )}

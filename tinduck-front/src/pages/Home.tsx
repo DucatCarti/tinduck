@@ -66,7 +66,7 @@ export const Home: React.FC = () => {
   }
 
   return (
-    <div className={"flex items-center justify-center h-full relative"}>
+    <div className="flex items-center justify-center h-full relative">
       <div
         className={`z-10 flex flex-col items-center ${isLoading ? "pointer-events-none" : ""}`}
       >
@@ -84,29 +84,21 @@ export const Home: React.FC = () => {
         >
           <div onClick={() => swiped("left")}>
             <IoClose
-              className={
-                "transition-all ease-in hover:scale-125 cursor-pointer p-[5px] shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)] rounded-[100px]"
-              }
+              className="transition-all ease-in hover:scale-125 cursor-pointer p-[5px] shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)] rounded-[100px]"
               color={isLoading ? "gray" : "black"}
               size={"35px"}
             />
           </div>
           <div onClick={() => swiped("right")}>
             <FaHeart
-              className={
-                "transition-all ease-in hover:scale-125 cursor-pointer p-[13px] shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)] rounded-[100px]"
-              }
+              className="transition-all ease-in hover:scale-125 cursor-pointer p-[13px] shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)] rounded-[100px]"
               color={isLoading ? "gray" : "red"}
               size={"50px"}
             />
           </div>
         </div>
       </div>
-      <div
-        className={
-          "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        }
-      >
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         {isLoading && <Spinner></Spinner>}
       </div>
     </div>

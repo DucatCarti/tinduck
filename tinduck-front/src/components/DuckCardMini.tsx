@@ -10,15 +10,11 @@ interface DuckCardMiniProps {
 export const DuckCardMini: React.FC<DuckCardMiniProps> = ({profile}) => {
   return (
     <div>
-      <div className={"relative w-[150px] h-[160px]"}>
-        <div
-          className={
-            "w-full h-full rounded-[15px] overflow-hidden shadow-[2px_3px_5px_0px_rgba(0,0,0,0.3)]"
-          }
-        >
+      <div className="relative w-[150px] h-[160px]">
+        <div className="w-full h-full rounded-[15px] overflow-hidden shadow-[2px_3px_5px_0px_rgba(0,0,0,0.3)]">
           <Link to={`/duck/${profile?.id}`} state={{profile}}>
             <img
-              className={"w-full h-full object-cover cursor-pointer"}
+              className="w-full h-full object-cover cursor-pointer"
               src={profile?.images?.[0]?.url}
               alt=""
             />
@@ -27,9 +23,7 @@ export const DuckCardMini: React.FC<DuckCardMiniProps> = ({profile}) => {
         <Link
           to={`/messages/${profile?.id}`}
           state={{profile}}
-          className={
-            "z-10 cursor-pointer absolute right-[-15px] bottom-[-20px] p-[8px] bg-white rounded-full shadow-[2px_3px_5px_0px_rgba(0,0,0,0.3)]"
-          }
+          className="z-10 cursor-pointer absolute right-[-15px] bottom-[-20px] p-[8px] bg-white rounded-full shadow-[2px_3px_5px_0px_rgba(0,0,0,0.3)]"
         >
           <AiFillMessage size={"30px"} color={"#535bf2"}></AiFillMessage>
         </Link>

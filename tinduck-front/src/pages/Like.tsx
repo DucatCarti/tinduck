@@ -25,8 +25,8 @@ export const Like: React.FC = () => {
       })
   }
   return (
-    <div className={"py-[50px]"}>
-      <div className={"flex flex-row flex-wrap justify-center gap-[40px]"}>
+    <div className="py-[50px]">
+      <div className="flex flex-row flex-wrap justify-center gap-[40px]">
         {likedBy?.length ? (
           likedBy?.map((profile) => (
             <div key={profile?.id}>
@@ -37,7 +37,7 @@ export const Like: React.FC = () => {
           <Spinner></Spinner>
         ) : (
           <div>
-            <p className={"text-slate-400 text-xl text-center"}>
+            <p className="text-slate-400 text-xl text-center">
               Вы пока никого не лайкнули :c
             </p>
           </div>

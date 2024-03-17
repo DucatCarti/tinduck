@@ -53,7 +53,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     resetValue()
   }
   return (
-    <div ref={ref} className={"relative w-full"}>
+    <div ref={ref} className="relative w-full">
       {!value ? (
         <Input
           errorMessage={errorMessage}
@@ -67,26 +67,18 @@ export const InputSelect: React.FC<InputSelectProps> = ({
           value={valueSelect}
         ></Input>
       ) : (
-        <div
-          className={
-            "bg-white flex flex-row gap-[10px] items-center p-[11px] text-s shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)] rounded-[20px]"
-          }
-        >
-          <p className={"px-[10px] line-clamp-1"}>{valueSelect || value}</p>
+        <div className="bg-white flex flex-row gap-[10px] items-center p-[11px] text-s shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)] rounded-[20px]">
+          <p className="px-[10px] line-clamp-1">{valueSelect || value}</p>
           <IoClose
             onClick={resetSelectValue}
-            className={"transition-all ease-in hover:scale-125 cursor-pointer"}
+            className="transition-all ease-in hover:scale-125 cursor-pointer"
             size={"20px"}
           />
         </div>
       )}
       {isShow && (
-        <div
-          className={
-            "absolute z-10 overflow-scroll max-h-[250px] w-full top-[50px] left-[0px] bg-white rounded-[20px] shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)]"
-          }
-        >
-          <ul className={"flex flex-col py-[15px]"}>
+        <div className="absolute z-10 overflow-scroll max-h-[250px] w-full top-[50px] left-[0px] bg-white rounded-[20px] shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)]">
+          <ul className="flex flex-col py-[15px]">
             {searchOptions.length >= 1
               ? searchOptions.map((option) => (
                   <li
@@ -101,9 +93,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
                 ))
               : options.map((option) => (
                   <li
-                    className={
-                      "px-[15px] py-[10px] cursor-pointer hover:bg-slate-100"
-                    }
+                    className="px-[15px] py-[10px] cursor-pointer hover:bg-slate-100"
                     onClick={() => clickOption(option)}
                     key={option.name}
                   >

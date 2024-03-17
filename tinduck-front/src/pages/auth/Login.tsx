@@ -40,16 +40,10 @@ export const Login: React.FC = () => {
       })
   }
   return (
-    <div
-      className={
-        "mx-auto flex flex-col items-center justify-center w-[250px] mt-[0px]"
-      }
-    >
+    <div className="mx-auto flex flex-col items-center justify-center w-[250px] mt-[0px]">
       <form
         onSubmit={handleSubmit(submit)}
-        className={
-          "flex flex-col items-center justify-center gap-[30px] w-full my-[10px] mt-[40px]"
-        }
+        className="flex flex-col items-center justify-center gap-[30px] w-full my-[10px] mt-[40px]"
       >
         <Controller
           control={control}
@@ -84,12 +78,12 @@ export const Login: React.FC = () => {
             </>
           )}
         />
-        <Button disabled={isLoading} className={"w-full"}>
+        <Button disabled={isLoading} className="w-full">
           Войти
         </Button>
-        <p className={"text-sm text-center"}>
+        <p className="text-sm text-center">
           Если у вас еще нет аккаунта -{" "}
-          <Link className={"text-[#535bf2] font-bold"} to={"/register"}>
+          <Link className="text-[#535bf2] font-bold" to={"/register"}>
             зарегистрируйтесь
           </Link>{" "}
         </p>

@@ -25,15 +25,15 @@ export const StepPreference: React.FC<StepPreferenceProps> = ({
         watch={watch}
       ></SelectorGenderPreference>
       {(errors?.genderPreference?.message as string) && (
-        <p className={"text-rose-700 text-xs"}>
+        <p className="text-rose-700 text-xs">
           {errors?.genderPreference?.message as string}
         </p>
       )}
-      <div className={"flex flex-col"}>
-        <Button className={"w-full"}>Продолжить</Button>
+      <div className="flex flex-col">
+        <Button className="w-full">Продолжить</Button>
         <button
           onClick={() => stepRegisterBack()}
-          className={"text-[#535bf2] font-bold mt-[12px] text-sm"}
+          className="text-[#535bf2] font-bold mt-[12px] text-sm"
         >
           Назад
         </button>

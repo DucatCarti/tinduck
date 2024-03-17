@@ -47,7 +47,7 @@ export const Input: React.FC<InputProps> = ({
   }
   return (
     <>
-      <label className={"relative block w-full"} htmlFor={name}>
+      <label className="relative block w-full" htmlFor={name}>
         <p
           className={
             "absolute transition-all duration-500 ease-in-out pointer-events-none " +
@@ -60,11 +60,7 @@ export const Input: React.FC<InputProps> = ({
         </p>
         {type === "textarea" ? (
           <>
-            <div
-              className={
-                "flex items-center shadow-custom rounded-[20px] overflow-hidden focus:outline-none focus-within:shadow-[0px_0px_7px_-0px_#535bf2] ease-in transition-shadow duration-[200ms]"
-              }
-            >
+            <div className="flex items-center shadow-custom rounded-[20px] overflow-hidden focus:outline-none focus-within:shadow-[0px_0px_7px_-0px_#535bf2] ease-in transition-shadow duration-[200ms]">
               <textarea
                 name={name}
                 cols={cols}
@@ -85,7 +81,7 @@ export const Input: React.FC<InputProps> = ({
               className={`${className} bg-white w-full text-black text-base px-[24px] py-[11px] rounded-[20px] shadow-custom focus:outline-none focus-within:shadow-[0px_0px_7px_-0px_#535bf2] ease-in transition-shadow duration-[200ms]`}
             >
               <input
-                className={"min-w-full min-h-full w-full h-full"}
+                className="min-w-full min-h-full w-full h-full"
                 onChange={handleInputChange}
                 value={value}
                 type={type}
@@ -96,11 +92,7 @@ export const Input: React.FC<InputProps> = ({
             </div>
           </>
         )}
-        <p
-          className={
-            "top-[50px] right-[10px] text-end absolute text-rose-700 text-xs"
-          }
-        >
+        <p className="top-[50px] right-[10px] text-end absolute text-rose-700 text-xs">
           {errorMessage}
         </p>
       </label>

@@ -39,7 +39,7 @@ export const ChatList: React.FC = () => {
     })
   }, [profile?.id])
   return (
-    <div className={"flex flex-col min-w-full min-h-full h-full w-full"}>
+    <div className="flex flex-col min-w-full min-h-full h-full w-full">
       {chats?.length ? (
         <>
           {chats?.map((profile: UserProfile) => (
@@ -52,7 +52,7 @@ export const ChatList: React.FC = () => {
         <Spinner></Spinner>
       ) : (
         <div>
-          <p className={"text-slate-400 text-xl text-center py-[50px]"}>
+          <p className="text-slate-400 text-xl text-center py-[50px]">
             Вы пока нискем не общались :c
           </p>
         </div>

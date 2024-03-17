@@ -27,20 +27,18 @@ export const StepImages: React.FC<StepImagesProps> = ({
   return (
     <>
       <div>
-        <div className={"flex flex-row items-center gap-[20px]"}>
-          <p className={"text-xl"}>Добавьте фотографии</p>
+        <div className="flex flex-row items-center gap-[20px]">
+          <p className="text-xl">Добавьте фотографии</p>
         </div>
       </div>
-      <div className={"relative"}>
+      <div className="relative">
         <div>
           <button
             onClick={(e) => {
               e.preventDefault()
               fileInputRef.current?.click()
             }}
-            className={
-              "absolute z-10 top-[-20px] left-[-10px] bg-white p-[15px] rounded-full shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)]"
-            }
+            className="absolute z-10 top-[-20px] left-[-10px] bg-white p-[15px] rounded-full shadow-[1px_2px_6px_-1px_rgba(0,0,0,0.4)]"
           >
             <MdOutlineAddAPhoto size={"30px"} />
           </button>
@@ -79,15 +77,13 @@ export const StepImages: React.FC<StepImagesProps> = ({
           {watch("images")?.length >= 1 ? (
             watch("images").map((image: Image) => (
               <SwiperSlide key={image.url}>
-                <div className={"w-full h-full relative"}>
+                <div className="w-full h-full relative">
                   <Controller
                     control={control}
                     name={"images"}
                     render={({field}) => (
                       <IoClose
-                        className={
-                          "absolute top-[10px] right-[10px] cursor-pointer"
-                        }
+                        className="absolute top-[10px] right-[10px] cursor-pointer"
                         size={"23px"}
                         onClick={() => {
                           const prev = watch("images")
@@ -101,7 +97,7 @@ export const StepImages: React.FC<StepImagesProps> = ({
                   />
 
                   <img
-                    className={"w-full h-full object-cover"}
+                    className="w-full h-full object-cover"
                     src={image?.url}
                     alt=""
                   />
@@ -114,22 +110,22 @@ export const StepImages: React.FC<StepImagesProps> = ({
                 onClick={() => {
                   fileInputRef.current?.click()
                 }}
-                className={"w-full h-full bg-slate-100 cursor-pointer"}
+                className="w-full h-full bg-slate-100 cursor-pointer"
               />
             </SwiperSlide>
           )}
         </Swiper>
       </div>
       {errors?.images?.message && (
-        <p className={"text-rose-700 text-xs"}>
+        <p className="text-rose-700 text-xs">
           {errors?.images?.message as string}
         </p>
       )}
-      <div className={"flex flex-col"}>
-        <Button className={"w-full"}>Продолжить</Button>
+      <div className="flex flex-col">
+        <Button className="w-full">Продолжить</Button>
         <button
           onClick={() => stepRegisterBack()}
-          className={"text-[#535bf2] font-bold mt-[12px] text-sm"}
+          className="text-[#535bf2] font-bold mt-[12px] text-sm"
         >
           Назад
         </button>

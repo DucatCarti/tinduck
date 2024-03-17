@@ -53,7 +53,7 @@ export const StepInfo: React.FC<StepInfoProps> = ({
           ></Input>
         )}
       />
-      <div className={"flex flex-row items-center justify-around gap-[30px]"}>
+      <div className="flex flex-row items-center justify-around gap-[30px]">
         <Controller
           control={control}
           name={"gender"}
@@ -88,15 +88,15 @@ export const StepInfo: React.FC<StepInfoProps> = ({
         />
       </div>
       {errors?.age && (
-        <p className={"text-rose-700 text-xs"}>
+        <p className="text-rose-700 text-xs">
           {errors?.gender?.message as string}
         </p>
       )}
-      <div className={"flex flex-col"}>
-        <Button className={"w-full"}>Продолжить</Button>
+      <div className="flex flex-col">
+        <Button className="w-full">Продолжить</Button>
         <button
           onClick={() => stepRegisterBack()}
-          className={"text-[#535bf2] font-bold mt-[12px] text-sm"}
+          className="text-[#535bf2] font-bold mt-[12px] text-sm"
         >
           Назад
         </button>

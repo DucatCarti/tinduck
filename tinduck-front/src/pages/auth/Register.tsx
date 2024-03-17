@@ -11,7 +11,7 @@ import {StepLocation} from "./steps-register/StepLocation.tsx"
 import {StepPassword} from "./steps-register/StepPassword.tsx"
 import {authAxios} from "../../api/axios.ts"
 
-export const Register = () => {
+export const Register: React.FC = () => {
   const navigate = useNavigate()
   const {
     handleSubmit,
@@ -56,16 +56,10 @@ export const Register = () => {
   const progress = (stepRegister / stepMax) * 100
 
   return (
-    <div
-      className={
-        "mx-auto flex flex-col items-center justify-center w-[250px] mt-[0px]"
-      }
-    >
+    <div className="mx-auto flex flex-col items-center justify-center w-[250px] mt-[0px]">
       <form
         onSubmit={handleSubmit(submit)}
-        className={
-          "flex flex-col items-center justify-center gap-[30px] w-full my-[10px] mt-[40px]"
-        }
+        className="flex flex-col items-center justify-center gap-[30px] w-full my-[10px] mt-[40px]"
       >
         {stepRegister === 1 && (
           <StepEmail watch={watch} errors={errors} control={control} />
@@ -127,9 +121,9 @@ export const Register = () => {
             style={{width: `${progress}%`}}
           ></div>
         </div>
-        <p className={"text-sm text-center"}>
+        <p className="text-sm text-center">
           Если у вас есть аккаунт -{" "}
-          <Link className={"text-[#535bf2] font-bold"} to={"/login"}>
+          <Link className="text-[#535bf2] font-bold" to={"/login"}>
             войдите
           </Link>{" "}
         </p>
