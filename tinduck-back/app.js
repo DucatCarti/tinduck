@@ -33,8 +33,6 @@ io.on("connection", (socket) => {
     io.emit("updateAllChats");
   });
   socket.on("getAllChats", async (data) => {
-    console.log(data);
-    console.log(data);
     const chats = await getAllChats(data);
     socket.emit("responseAllChats", chats);
   });

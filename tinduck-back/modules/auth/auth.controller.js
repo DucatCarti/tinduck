@@ -4,35 +4,39 @@ import {generateToken} from "./generateToken.js";
 
 
 export const registerUser = async (req, res) => {
-	const {name, email, password, age, location, about, gender, genderPreference, images} = req.body.data
-	const isHaveUser = await prisma.user.findUnique({
-		where: {
-			email: email,
-		},
-	});
-	if (isHaveUser) {
-		return res.status(400).json({ message: 'Пользователь с таким email уже существует'})
-	}
-	const user = await prisma.user.create({
-		data: {
-			email,
-			password: await hash(password),
-			name,
-			age: Number(age),
-			location,
-			about,
-			gender,
-			genderPreference,
-			images: {
-				create: images
-			}
-		},
-		include: {
-			images: true
+	try {
+		const {name, email, password, age, location, about, gender, genderPreference, images} = req.body.data
+		const isHaveUser = await prisma.user.findUnique({
+			where: {
+				email: email,
+			},
+		});
+		if (isHaveUser) {
+			return res.status(400).json({ message: 'Пользователь с таким email уже существует'})
 		}
-	});
-	const token = generateToken(user.id);
-	return  res.status(200).json({ successRegister: true, user, token });
+		const user = await prisma.user.create({
+			data: {
+				email,
+				password: await hash(password),
+				name,
+				age: Number(age),
+				location,
+				about,
+				gender,
+				genderPreference,
+				images: {
+					create: images
+				}
+			},
+			include: {
+				images: true
+			}
+		});
+		const token = generateToken(user.id);
+		return  res.status(200).json({ user, token });
+	} catch (err) {
+		return res.status(500).json({ message: 'Ошибка сервера' })
+	}
 }
 export const registerCheckEmail = async (req,res) => {
 
@@ -115,8 +119,7 @@ export const editProfile = async (req, res) => {
 					userId: userId,
 				},
 			});
-
-			const newImages = await Promise.all(
+			await Promise.all(
 				images.map(async (image) => {
 					return prisma.image.create({
 						data: {

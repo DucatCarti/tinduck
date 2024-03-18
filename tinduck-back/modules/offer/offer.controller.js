@@ -1,9 +1,8 @@
 import {prisma} from "../../prisma.js";
-let lastOfferUserId = null
 
+let lastOfferUserId = null
 export const getOfferUser = async (req, res) => {
 	const userId = req.user.userId
-	console.log(lastOfferUserId)
 
 	try {
 		const { genderPreference } = req.body;
@@ -58,18 +57,17 @@ export const likeOffer = async (req, res) => {
 		});
 
 		if (!sender || !receiver) {
-			return res.status(404).json({ error: 'Пользователь не найден' });
+			return res.status(404).json({ message: 'Пользователь не найден' });
 		}
 
 		// Создаем лайк
-		const like = await prisma.like.create({
+		await prisma.like.create({
 			data: {
 				senderId,
 				receiverId,
 			},
 		});
-
-		// Добавляем лайк в список лайков отправителя
+// Добавляем лайк в список лайков отправителя
 		// await prisma.user.update({
 		// 	where: { id: senderId },
 		// 	data: {

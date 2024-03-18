@@ -2,13 +2,13 @@ import {prisma} from "../../prisma.js";
 
 export const createNewMessage = async (data) => {
 	try {
-		const message = await prisma.message.create({
+		await prisma.message.create({
 			data: {
 				text: data.message,
 				senderId: data.senderId,
 				receiverId: data.receiverId
 			}
-		})
+		});
 	} catch (err) {
 		throw new Error(err)
 	}
@@ -30,9 +30,9 @@ export const getMessages = async (data) => {
 				]
 			}
 		})
-		return messages
+		return {messages: messages}
 	} catch (err) {
-		throw new Error(err)
+		return {message: 'Ошибка получения диалога'}
 	}
 
 }
@@ -126,9 +126,10 @@ export const getAllChats = async (data) => {
 					lastMessage: lastMessage
 				};
 			});
-			return usersWithLastMessage;
+			return {chats: usersWithLastMessage};
 		}
 	} catch (error) {
 		console.error('Error fetching users:', error);
+		return {message: 'Ошибка получения чатов'}
 	}
 }
