@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import {InputChangeEvent} from "../../types/Events.ts"
+import {ErrorMessage} from "./ErrorMessage.tsx"
 
 interface InputProps {
   className?: string
@@ -92,9 +93,11 @@ export const Input: React.FC<InputProps> = ({
             </div>
           </>
         )}
-        <p className="top-[50px] right-[10px] text-end absolute text-rose-700 text-xs">
-          {errorMessage}
-        </p>
+        {errorMessage && (
+          <ErrorMessage className="top-[50px] right-[10px] text-end absolute">
+            {errorMessage}
+          </ErrorMessage>
+        )}
       </label>
     </>
   )

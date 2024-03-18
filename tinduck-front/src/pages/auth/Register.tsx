@@ -9,7 +9,7 @@ import {StepPreference} from "./steps-register/StepPreference.tsx"
 import {StepImages} from "./steps-register/StepImages.tsx"
 import {StepLocation} from "./steps-register/StepLocation.tsx"
 import {StepPassword} from "./steps-register/StepPassword.tsx"
-import {authAxios} from "../../api/axios.ts"
+import {$axios} from "../../api/axios.ts"
 
 export const Register: React.FC = () => {
   const navigate = useNavigate()
@@ -18,6 +18,8 @@ export const Register: React.FC = () => {
     control,
     watch,
     formState: {errors},
+    setError,
+    clearErrors,
   } = useForm({
     defaultValues: {},
     mode: "onBlur",
@@ -32,19 +34,31 @@ export const Register: React.FC = () => {
     if (stepRegister === stepMax && !Object.keys(errors).length) {
       setIsLoading(true)
 
-      await authAxios
-        .post("register", {data})
+      await $axios
+        .post("auth/register", {data})
         .then((res) => {
-          if (res.data.successRegister) {
-            authAxios.defaults.headers.common["Authorization"] =
+          if (res.status === 200) {
+            $axios.defaults.headers.common["Authorization"] =
               "Bearer " + res.data.token
             localStorage.setItem("token", res.data.token)
             localStorage.setItem("user", JSON.stringify(res.data.user))
+            clearErrors()
             navigate("/")
+          } else {
+            setError("root.register", {
+              type: "custom",
+              message:
+                res?.data?.message ||
+                "Неизвестная ошибка. Тыкните клювом в разработчика",
+            })
           }
         })
         .catch((err) => {
-          console.log(err)
+          console.error(err)
+          setError("root.register", {
+            type: "custom",
+            message: "Ошибка запроса на сервер. Тыкните клювом в разработчика",
+          })
         })
         .finally(() => setIsLoading(false))
     }

@@ -15,14 +15,25 @@ export const Chat: React.FC = () => {
 
   const dispatch = useAppDispatch()
   const [messages, setMessages] = useState([])
+  const [errorMessage, setErrorMessage] = useState<string>("")
   useEffect(() => {
     dispatch(getProfile())
     socket.on("getMessages", (data) => {
-      setMessages(data)
+      if (data?.messages) {
+        setMessages(data.messages)
+      }
+      if (data?.message) {
+        setErrorMessage(data.message)
+      }
       setIsLoading(false)
     })
     socket.on("responseMessages", (data) => {
-      setMessages(data)
+      if (data?.messages) {
+        setMessages(data.messages)
+      }
+      if (data?.message) {
+        setErrorMessage(data.message)
+      }
     })
   }, [])
   useEffect(() => {
@@ -58,6 +69,7 @@ export const Chat: React.FC = () => {
       <div className="flex flex-col items-center justify-between w-full min-w-full h-full min-h-full">
         <ChatHeader receiverProfile={receiverProfile}></ChatHeader>
         <ChatMessagesList
+          errorMessage={errorMessage}
           messages={messages}
           senderProfile={senderProfile}
           isLoading={isLoading}

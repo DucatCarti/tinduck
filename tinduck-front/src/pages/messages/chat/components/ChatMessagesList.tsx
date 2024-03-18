@@ -1,17 +1,20 @@
 import React, {useEffect, useMemo} from "react"
 import {Message, UserProfile} from "../../../../types/UserData.ts"
 import {Spinner} from "../../../../components/ui/Spinner.tsx"
+import {ErrorMessage} from "../../../../components/ui/ErrorMessage.tsx"
 
 interface ChatMessagesListProps {
   messages: Message[]
   isLoading: boolean
   senderProfile: UserProfile | null
+  errorMessage: string
 }
 
 export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
   messages,
   senderProfile,
   isLoading,
+  errorMessage,
 }) => {
   useEffect(() => {
     window.scrollTo({
@@ -34,6 +37,9 @@ export const ChatMessagesList: React.FC<ChatMessagesListProps> = ({
   return (
     <div className="my-[65px] w-full p-[30px] relative">
       <div className="flex flex-col gap-[15px]">
+        <ErrorMessage className="absolute bottom-[10px]">
+          {errorMessage}
+        </ErrorMessage>
         {messages?.length ? (
           messages?.map((message: Message) => (
             <div

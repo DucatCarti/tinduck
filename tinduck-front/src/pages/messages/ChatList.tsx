@@ -6,6 +6,7 @@ import {getProfile} from "../../store/slice/auth.ts"
 import {UserProfile} from "../../types/UserData.ts"
 import {Spinner} from "../../components/ui/Spinner.tsx"
 import {BASE_URL} from "../../api/axios.ts"
+import {ErrorMessage} from "../../components/ui/ErrorMessage.tsx"
 
 export const ChatList: React.FC = () => {
   const socket = useMemo(() => io(`${BASE_URL}`), [])
@@ -21,11 +22,18 @@ export const ChatList: React.FC = () => {
 
   const dispatch = useAppDispatch()
   const [chats, setChats] = useState([])
+  const [errorMessage, setErrorMessage] = useState<string>("")
   useEffect(() => {
     dispatch(getProfile())
     socket.on("responseAllChats", (data) => {
       setIsLoading(false)
-      setChats(data)
+      if (data?.chats) {
+        setChats(data.chats)
+        setErrorMessage("")
+      }
+      if (data?.message) {
+        setErrorMessage(data?.message)
+      }
     })
   }, [])
   useEffect(() => {
@@ -39,8 +47,10 @@ export const ChatList: React.FC = () => {
     })
   }, [profile?.id])
 
+  // @ts-ignore
   return (
     <div className="flex flex-col min-w-full min-h-full h-full w-full">
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       {chats?.length ? (
         <>
           {chats?.map((profile: UserProfile) => (

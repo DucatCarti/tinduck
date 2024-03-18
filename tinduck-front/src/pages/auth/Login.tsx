@@ -3,7 +3,7 @@ import {Input} from "../../components/ui/Input.tsx"
 import Button from "../../components/ui/Button.tsx"
 import {Link, useNavigate} from "react-router-dom"
 import {Controller, FieldValues, SubmitHandler, useForm} from "react-hook-form"
-import {authAxios} from "../../api/axios.ts"
+import {$axios} from "../../api/axios.ts"
 
 export const Login: React.FC = () => {
   const {
@@ -18,23 +18,31 @@ export const Login: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const submit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true)
-    await authAxios
-      .post("login", {data})
+    await $axios
+      .post("auth/login", {data})
       .then((res) => {
         if (res.status === 200) {
           localStorage.setItem("token", res.data.token)
           localStorage.setItem("user", JSON.stringify(res.data.user))
-          clearErrors("password")
+          clearErrors()
           if (res.data.user) {
             navigate("/")
           }
-        }
-        if (res.status === 400) {
-          setError("password", {type: "custom", message: res.data.message})
+        } else {
+          setError("root.login", {
+            type: "custom",
+            message:
+              res.data.message ||
+              "Неизвестная ошибка. Тыкните клювом в разработчика",
+          })
         }
       })
       .catch((err) => {
-        console.log(err)
+        console.error(err)
+        setError("root.login", {
+          type: "custom",
+          message: "Ошибка запроса на сервер. Тыкните клювом в разработчика",
+        })
       })
       .finally(() => {
         setIsLoading(false)
@@ -71,7 +79,10 @@ export const Login: React.FC = () => {
             <>
               <Input
                 onChange={(e) => field.onChange(e)}
-                errorMessage={errors?.password?.message as string}
+                errorMessage={
+                  (errors?.password?.message as string) ||
+                  (errors?.login?.message as string)
+                }
                 value={field.value}
                 type={"password"}
                 label={"Пароль"}

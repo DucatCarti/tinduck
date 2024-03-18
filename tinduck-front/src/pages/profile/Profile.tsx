@@ -1,6 +1,6 @@
 import React, {FormEvent, useEffect, useRef, useState} from "react"
 import {useForm} from "react-hook-form"
-import {authAxios} from "../../api/axios.ts"
+import {$axios} from "../../api/axios.ts"
 import {
   EditFieldsUserProfile,
   Gender,
@@ -53,8 +53,8 @@ export const Profile: React.FC = () => {
     resetField("images")
   }
   const editProfile = async (data: EditFieldsUserProfile) => {
-    await authAxios
-      .post("profile/edit", {
+    await $axios
+      .post("auth/profile/edit", {
         images: [...(data && data.images ? data.images : [])],
         about: data.about,
         location: data.location,

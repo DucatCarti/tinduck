@@ -8,6 +8,7 @@ import {IoClose} from "react-icons/io5"
 import Button from "../../../components/ui/Button.tsx"
 import {Control, Controller, FieldErrors, WatchInternal} from "react-hook-form"
 import {Image, UserProfile} from "../../../types/UserData.ts"
+import {ErrorMessage} from "../../../components/ui/ErrorMessage.tsx"
 
 interface StepImagesProps {
   control: Control
@@ -117,9 +118,7 @@ export const StepImages: React.FC<StepImagesProps> = ({
         </Swiper>
       </div>
       {errors?.images?.message && (
-        <p className="text-rose-700 text-xs">
-          {errors?.images?.message as string}
-        </p>
+        <ErrorMessage>{errors?.images?.message as string}</ErrorMessage>
       )}
       <div className="flex flex-col">
         <Button className="w-full">Продолжить</Button>

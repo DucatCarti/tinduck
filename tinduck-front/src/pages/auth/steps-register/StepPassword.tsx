@@ -5,6 +5,7 @@ import {Control, Controller, FieldErrors, WatchInternal} from "react-hook-form"
 import {UserProfile} from "../../../types/UserData.ts"
 import {InputChangeEvent} from "../../../types/Events.ts"
 import {Spinner} from "../../../components/ui/Spinner.tsx"
+import {ErrorMessage} from "../../../components/ui/ErrorMessage.tsx"
 
 interface StepPasswordProps {
   control: Control
@@ -74,9 +75,7 @@ export const StepPassword: React.FC<StepPasswordProps> = ({
             )}
           />
           {errors?.password?.message && (
-            <p className="text-rose-700 text-xs">
-              {errors?.password.message as string}
-            </p>
+            <ErrorMessage>{errors?.password.message as string}</ErrorMessage>
           )}
         </>
       )}

@@ -32,27 +32,38 @@ export const Home: React.FC = () => {
 
   const [offerUser, setOfferUser] = useState<UserProfile | undefined>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>("")
   const getOffer = async () => {
     setIsLoading(true)
     await $axios
       .post("/offer/", {genderPreference})
       .then((res) => {
-        setOfferUser(res?.data)
+        if (res.status === 200) {
+          setOfferUser(res?.data)
+          setErrorMessage("")
+        }
+        if (res.data?.message) {
+          setErrorMessage(res.data?.message)
+        }
         tinderCardRef.current?.restoreCard()
         setIsLoading(false)
       })
       .catch((err) => {
-        console.log(err)
+        console.error(err)
+        setErrorMessage("Ошибка получения карточки пользователя")
       })
   }
   const likeOffer = async () => {
     await $axios
       .post(`offer/like/${offerUser?.id}`)
       .then((res) => {
-        console.log(res)
+        if (res.status !== 200 && res.data?.message) {
+          setErrorMessage(res.data?.message || "Ошибка лайка")
+        }
       })
       .catch((err) => {
         console.log(err)
+        setErrorMessage("Ошибка лайка")
       })
     getOffer()
   }
@@ -102,6 +113,11 @@ export const Home: React.FC = () => {
             />
           </div>
         </div>
+        {errorMessage && (
+          <div className={"my-[15px] text-rose-700 text-sm"}>
+            {errorMessage}
+          </div>
+        )}
       </div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         {isLoading && <Spinner></Spinner>}

@@ -26,9 +26,9 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({
   return (
     <>
       <div
-        className={`w-[220px] h-[220px] rounded-full overflow-hidden ${!userProfile?.images[0] && "loading min-h-[220px] min-w-[220px]"}`}
+        className={`w-[220px] h-[220px] rounded-full overflow-hidden ${!userProfile?.images?.[0] && "loading min-h-[220px] min-w-[220px]"}`}
       >
-        {userProfile?.images[0] && (
+        {userProfile?.images?.[0] && (
           <img
             className="w-full h-full object-cover"
             src={userProfile?.images?.[0]?.url}

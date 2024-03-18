@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import {Input} from "../../../components/ui/Input.tsx"
 import Button from "../../../components/ui/Button.tsx"
 import {Control, Controller, FieldErrors, WatchInternal} from "react-hook-form"
-import {authAxios} from "../../../api/axios.ts"
+import {$axios} from "../../../api/axios.ts"
 import {UserProfile} from "../../../types/UserData.ts"
 import {InputChangeEvent} from "../../../types/Events.ts"
 import {Spinner} from "../../../components/ui/Spinner.tsx"
@@ -19,8 +19,8 @@ export const StepEmail: React.FC<StepEmail> = ({control, errors, watch}) => {
     const email: string = watch("email")
     let successfulValidate
     setIsLoading(true)
-    await authAxios
-      .post("register/email", {email: email})
+    await $axios
+      .post("auth/register/email", {email: email})
       .then((res) => {
         if (res?.data?.emailFree) {
           successfulValidate = !!res.data?.emailFree

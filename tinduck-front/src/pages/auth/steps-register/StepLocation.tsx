@@ -3,6 +3,7 @@ import {InputSelect, Option} from "../../../components/ui/InputSelect.tsx"
 import {cities} from "../../../static-data/cities.ts"
 import Button from "../../../components/ui/Button.tsx"
 import {Control, Controller, FieldErrors} from "react-hook-form"
+import {ErrorMessage} from "../../../components/ui/ErrorMessage.tsx"
 
 interface StepLocationProps {
   control: Control
@@ -36,9 +37,7 @@ export const StepLocation: React.FC<StepLocationProps> = ({
         )}
       />
       {errors?.location?.message && (
-        <p className="text-rose-700 text-xs">
-          {errors?.location?.message as string}
-        </p>
+        <ErrorMessage>{errors?.location?.message as string}</ErrorMessage>
       )}
       <div className="flex flex-col">
         <Button className="w-full">Продолжить</Button>
