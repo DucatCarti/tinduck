@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import {UserProfile} from "../../types/UserData.ts"
-import {authAxios} from "../../api/axios.ts"
+import {$axios} from "../../api/axios.ts"
 
 interface authState {
   loadingProfile: boolean
@@ -19,10 +19,15 @@ const initialState: authState = {
 export const getProfile = createAsyncThunk("auth/getProfile", async () => {
   const UserProfile = localStorage.getItem("user")
   if (UserProfile) {
-    return JSON.parse(UserProfile)
+    return {user: JSON.parse(UserProfile)}
   } else {
-    const response = await authAxios.get("profile")
-    return response.data.user
+    const response = await $axios.get("auth/profile")
+    if (response.data?.user) {
+      return {user: response.data.user}
+    }
+    if (response.data?.message) {
+      return {message: response.data.message}
+    }
   }
 })
 
@@ -41,7 +46,14 @@ export const authSlice = createSlice({
         state.loadingProfile = true
       })
       .addCase(getProfile.fulfilled, (state, action) => {
-        state.profile = action.payload
+        if (action.payload?.user) {
+          state.profile = action.payload.user
+          localStorage.setItem("user", JSON.stringify(action.payload.user))
+        } else if (action.payload?.message) {
+          state.errorProfile = action.payload.message
+        } else {
+          state.errorProfile = "Неизвестная ошибка. Тыкните клювом разработчика"
+        }
         state.loadingProfile = false
         state.errorProfile = null
       })
